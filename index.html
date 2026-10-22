@@ -733,7 +733,7 @@ window.addEventListener('pointerup',e=>{
   if(!ptr.down) return; ptr.down=false; canvas.classList.remove('drag'); lastInteract=performance.now();
   if (ptr.moved<6 && e.target===canvas){
     const c = pick(e.clientX,e.clientY);
-    f (c<0){ deactivate(); return; };
+    if (c<0){ deactivate(); return; };
     /* 1st click: only the card opens (and stays until another neuron is clicked). Clicking the same neuron again opens the repo. */
     if (pinned && active===c) window.open(neurons[c].repo.url,'_blank','noopener');
     else { pinned = true; closeAt = 0; activate(c); }
