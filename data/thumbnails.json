@@ -1,0 +1,4 @@
+{
+  "_help": "Optional. Map a repository name to the image shown in its card, e.g. \"attentionlens\": \"assets/thumbs/attentionlens.png\" (a file inside this site) or a full https URL. Keys starting with _ are ignored.",
+  "_example-repo-name": "assets/thumbs/example.png"
+}

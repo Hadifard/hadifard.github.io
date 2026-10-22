@@ -1,0 +1,141 @@
+{
+  "login": "Hadifard",
+  "generatedAt": "2026-10-19T08:16:14.627Z",
+  "repos": [
+    {
+      "name": "mnist-mlp-3d-inference-visualizer",
+      "description": "A neural network project with two sides: a PyTorch pipeline that trains a fully connected network (MLP) on MNIST and exports its weights, and an interactive 3D visualizer that runs inference on that network and shows every neuron, weight and activation live as you draw.",
+      "url": "https://github.com/Hadifard/mnist-mlp-3d-inference-visualizer",
+      "homepage": "",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "topics": [
+        "html-css-javascript",
+        "mlp",
+        "mlp-classifier",
+        "mnist-classification",
+        "mnist-handwriting-recognition",
+        "numpy"
+      ],
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/banner.png",
+        "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/video-poster.png",
+        "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/app-overview-annotated.png",
+        "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/draw-and-confidence.png",
+        "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/architecture.png"
+      ]
+    },
+    {
+      "name": "attentionlens",
+      "description": "Explainable AI for Transformers: finding and testing induction ",
+      "url": "https://github.com/Hadifard/attentionlens",
+      "homepage": "https://www.linkedin.com/in/hadi-sarhangi-fard-mech-eng/",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "topics": [
+        "attention",
+        "explainable-ai",
+        "induction-heads",
+        "interpretability",
+        "mechanistic-interpretability",
+        "pytorch"
+      ],
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/banner.png",
+        "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/head_view_induction.png",
+        "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/architecture.png",
+        "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/training_curves.png",
+        "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/attention_grid.png"
+      ]
+    },
+    {
+      "name": "niryo-ned2-robot-tictactoe",
+      "description": "Robot vs. Robot Tic-Tac-Toe is an advanced open-source robotics project powered by Niryo Ned2 6-axis arms, robust computer vision, and an unbeatable Alpha-Beta Minimax decision-making engine.",
+      "url": "https://github.com/Hadifard/niryo-ned2-robot-tictactoe",
+      "homepage": "https://www.linkedin.com/in/hadi-sarhangi-fard-mech-eng/",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "topics": [
+        "artificial-intelligence",
+        "artificial-neural-networks",
+        "computer-vision",
+        "deep-learning",
+        "niryo",
+        "tictactoe"
+      ],
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_two_circle_transform.png",
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_depth_model.png",
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_trajectory.png",
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_game_logic.png",
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_path_learning.png"
+      ]
+    },
+    {
+      "name": "enhanced-zhang-colorization-with-object-aware-processing",
+      "description": "Improvement image/video colorization using Zhang et al. algorithm with object-aware processing for custom  recolorization, facial feature correction, and color bleeding prevention",
+      "url": "https://github.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing",
+      "homepage": "https://hadifard.github.io",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 4,
+      "topics": [
+        "caffe-model",
+        "color-transfer",
+        "computer-vision",
+        "deep-learning",
+        "deeplabv3",
+        "facial-landmark-detection"
+      ],
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_a%2520new%2520zealander%2520vintage%2520lady%2520portrait.jpg",
+        "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_a%2520young%2520woman%2520vintage%2520portrait.jpg",
+        "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_horse.jpg",
+        "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_my%2520image%2520in%2520Prague.jpg",
+        "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_William%2520Holden%2520actor%2520vintage%2520photo.jpg"
+      ]
+    },
+    {
+      "name": "dropout-deep-learning-visualization",
+      "description": "A tiny neural network, trained live in the browser with hand-written backpropagation, fitting a noisy y = x² curve — with every weight, every bias, and every dropout mask visible as it happens, so you can watch dropout do its job instead of just reading about it.",
+      "url": "https://github.com/Hadifard/dropout-deep-learning-visualization",
+      "homepage": "linkedin.com/in/hadi-sarhangi-fard-mech-eng",
+      "language": "JavaScript",
+      "languageColor": "#f1e05a",
+      "stars": 1,
+      "topics": [
+        "dropout",
+        "dropout-analysis",
+        "html",
+        "javascript",
+        "python"
+      ],
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-overview.png",
+        "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-dropout-off.png",
+        "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-noisy-data.png",
+        "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-uniform-data.png",
+        "https://opengraph.githubassets.com/d753b0c8306b1eae381705d8244589757cfdccd0f2aba82be50fc0b4f9d96389/Hadifard/dropout-deep-learning-visualization"
+      ]
+    },
+    {
+      "name": "neural-net-training-explorer",
+      "description": "An interactive, browser-based visualizer for a small multilayer perceptron (MLP) that trains **live** in front of you. Every neuron, every weight, and every gradient is visible and editable at the same time — no black box, no pre-recorded animation. It's built with plain HTML, CSS and JavaScript, with zero external dependencies and zero build step.",
+      "url": "https://github.com/Hadifard/neural-net-training-explorer",
+      "homepage": "",
+      "language": "JavaScript",
+      "languageColor": "#f1e05a",
+      "stars": 1,
+      "topics": [],
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/01-overview.png",
+        "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/02-fast-training-mode.png",
+        "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/03-gradient-inspector-cards.png",
+        "https://opengraph.githubassets.com/4456b17edbafc899ef921ef74ccf6180cc737e6a28dcfe5b31bbda6b6809af3d/Hadifard/neural-net-training-explorer"
+      ]
+    }
+  ]
+}

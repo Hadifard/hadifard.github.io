@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hadi Sarhangi Fard</title>
+<meta name="description" content="AI Engineer with a Mechanical Engineering background and 15+ years of industrial experience. Building ML, LLM and Agentic AI systems for anomaly detection, optimization and industrial automation.">
+<meta name="theme-color" content="#02050d">
+<meta property="og:title" content="Hadi Sarhangi Fard">
+<meta property="og:description" content="A living 3D neural network whose neurons are my pinned GitHub repositories.">
+<meta property="og:image" content="assets/hero.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23ff9a4d'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%234da3ff' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/inter-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Inter;font-weight:300;font-display:swap;src:url(assets/fonts/inter-latin-300-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-weight:400;font-display:swap;src:url(assets/fonts/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-weight:600;font-display:swap;src:url(assets/fonts/inter-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:400;font-display:swap;src:url(assets/fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2')}
+
+:root{
+  --u:1;
+  --ink:#eaf2ff; --mut:#b2c6e1; --dim:#6f87a8;
+  --blue:#4da3ff; --cyan:#6fe3ff; --amber:#ffa24d;
+  --line:rgba(110,170,255,.30);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+html.capture{--u:1.32}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#02050d;color:var(--ink);overflow:hidden;font-family:var(--sans);-webkit-font-smoothing:antialiased}
+canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab;outline:none}
+canvas#gl.drag{cursor:grabbing}
+canvas#gl.hit{cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+/* identity (top-left, over the network) */
+header.id{position:fixed;z-index:4;left:clamp(20px,4.2vw,64px);top:clamp(22px,5.6vh,64px);
+  width:min(clamp(300px,27vw,470px),calc(100vw - 40px));pointer-events:none}
+header.id h1{margin:0 0 calc(10px*var(--u));font-weight:600;letter-spacing:-.02em;line-height:1.1;
+  font-size:calc(clamp(1.12rem,2.3vw,2.1rem) * var(--u));
+  background:linear-gradient(100deg,#fff 0%,#dcecff 45%,#8fc2ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 16px rgba(40,110,255,.30))}
+header.id p{margin:0 0 calc(16px*var(--u));font-weight:300;color:var(--mut);
+  font-size:calc(clamp(.8rem,.98vw,.96rem) * var(--u));line-height:1.55;text-shadow:0 1px 14px #000,0 0 3px #000}
+nav.ico{display:flex;gap:calc(12px*var(--u));pointer-events:auto}
+nav.ico a{display:grid;place-items:center;width:calc(44px*var(--u));height:calc(44px*var(--u));border-radius:50%;
+  color:#cfe3ff;background:rgba(6,14,30,.55);border:1px solid var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:transform .25s,border-color .25s,box-shadow .25s,color .25s}
+nav.ico a:hover,nav.ico a:focus-visible{transform:translateY(-2px);border-color:#7dbbff;color:#fff;box-shadow:0 0 22px rgba(70,150,255,.55)}
+nav.ico svg{width:calc(19px*var(--u));height:calc(19px*var(--u));fill:currentColor}
+
+/* title shown only in the README animation (?capture=1) */
+.cap{display:none}
+html.capture header.id h1,html.capture header.id p{display:none}
+html.capture .cap{display:block}
+.cap .t{font-weight:600;letter-spacing:-.02em;line-height:1.1;font-size:calc(2.2rem * var(--u));margin:0 0 calc(12px*var(--u));white-space:nowrap}
+.cap .t .g{background:linear-gradient(100deg,#fff 0%,#dcecff 45%,#8fc2ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(40,110,255,.35))}
+.cap .s{font-weight:300;font-size:calc(1.02rem * var(--u));line-height:1.7;color:var(--mut);text-shadow:0 1px 14px #000,0 0 3px #000}
+.cap .s b{font-weight:600;color:#ffc58a;letter-spacing:.02em}
+
+/* neuron tags */
+.tag{position:fixed;left:0;top:0;z-index:3;pointer-events:none;will-change:transform;opacity:0;transition:opacity .35s}
+.tag.vis{opacity:var(--o,1)}
+.tag .ring{position:absolute;left:calc(var(--r,16px) * -1);top:calc(var(--r,16px) * -1);width:calc(var(--r,16px) * 2);height:calc(var(--r,16px) * 2);
+  border-radius:50%;border:1px solid rgba(140,200,255,.75);box-shadow:0 0 14px rgba(60,130,255,.6),inset 0 0 10px rgba(60,130,255,.25);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.tag.on .ring{transform:scale(1.55);border-color:rgba(255,170,95,.95);box-shadow:0 0 22px rgba(255,150,70,.6),inset 0 0 12px rgba(255,150,70,.35)}
+.tag .txt{position:absolute;left:0;bottom:calc(var(--r,16px) + 8px);transform:translateX(-50%);white-space:nowrap;
+  font:400 calc(var(--fs,12px)*var(--u))/1 var(--mono);letter-spacing:.06em;text-transform:none;color:#dcecff;
+  text-shadow:0 0 10px rgba(40,120,255,.95),0 1px 2px #000,0 -1px 2px #000,1px 0 2px #000,-1px 0 2px #000,0 0 6px #000;transition:color .3s}
+.tag.sm{--fs:10px}
+.tag.on .txt{color:#ffd7ae;text-shadow:0 0 12px rgba(255,140,60,.9),0 0 3px #000}
+
+/* credit line */
+#credit{position:fixed;z-index:4;left:0;right:0;bottom:clamp(10px,2.2vh,20px);padding:0 16px;text-align:center;pointer-events:none;
+  font:400 10.5px/1.5 var(--mono);letter-spacing:.07em;color:var(--dim);opacity:.85}
+html.capture #credit{display:none}
+html.capture nav.ico{display:none}
+html.capture *{transition:none!important;animation:none!important}
+html.capture .tag .txt{--fs:16px}
+html.capture .tag.sm .txt{--fs:12px}
+html.capture header.id{pointer-events:none}
+
+/* repository card (opens at the left, below the profile icons) */
+#card{position:fixed;z-index:6;left:var(--cl,40px);top:var(--ct,300px);--cw:300px;width:var(--cw);height:calc(var(--cw) * 1.5);
+  opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s ease,transform .3s cubic-bezier(.2,.9,.2,1)}
+#card.on{opacity:1;transform:none;pointer-events:auto}
+html.capture #card{display:none}
+#card a{display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;overflow:hidden;border-radius:14px;
+  background:linear-gradient(160deg,rgba(14,26,50,.93) 0%,rgba(5,10,22,.95) 100%);
+  border:1px solid rgba(120,180,255,.34);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 16px 50px rgba(0,0,0,.6),0 0 36px rgba(50,120,255,.22),inset 0 1px 0 rgba(255,255,255,.07);transition:border-color .25s,box-shadow .25s}
+#card a:hover,#card a:focus-visible{border-color:#8cc5ff;box-shadow:0 16px 50px rgba(0,0,0,.6),0 0 44px rgba(70,150,255,.38),inset 0 1px 0 rgba(255,255,255,.1)}
+#card .thumb{flex:0 0 auto;display:flex;align-items:center;min-height:calc(var(--cw) * .5625);max-height:50%;overflow:hidden;background:#02060c;border-bottom:1px solid rgba(120,180,255,.2)}
+#card .thumb img{display:block;width:100%;height:auto;opacity:0;transition:opacity .35s ease}
+#card .thumb img.show{opacity:1}
+#card .meta{flex:1 1 auto;min-height:0;padding:14px 16px 16px;overflow:hidden}
+#card h2{margin:0 0 8px;font:600 15px/1.3 var(--sans);color:#eaf3ff;overflow-wrap:anywhere}
+#card p{margin:0;font:300 13px/1.55 var(--sans);color:var(--mut);display:-webkit-box;-webkit-line-clamp:9;-webkit-box-orient:vertical;overflow:hidden}
+
+/* keyboard / screen-reader access to the pinned list */
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sr:focus-within{position:fixed;left:16px;bottom:16px;width:auto;height:auto;margin:0;clip:auto;z-index:9;background:#000c;padding:8px 12px;border:1px solid var(--line);border-radius:8px}
+
+#nogl{display:none;position:fixed;inset:0;z-index:0;background:#02050d url(assets/hero.webp) center/cover no-repeat}
+html.nogl #nogl{display:block}
+
+@media (max-width:720px){
+  header.id{top:max(18px,env(safe-area-inset-top))}
+  #credit{font-size:9px;letter-spacing:.04em}
+}
+@media (prefers-reduced-motion:reduce){
+  #card{transition:opacity .2s;transform:none}
+}
+</style>
+</head>
+<body>
+<canvas id="gl" aria-label="Interactive 3D neural network. Each labelled neuron is one of Hadi's pinned GitHub repositories."></canvas>
+<div id="nogl" aria-hidden="true"></div>
+
+<header class="id">
+  <div class="cap" aria-hidden="true"><div class="t"><span class="em">&#127756;</span> <span class="g">Neural Galaxy</span></div><div class="s"><b>one neuron, one project</b><br>Click on neurons and<br>Explore my AI universe</div></div>
+  <h1>Hadi Sarhangi Fard</h1>
+  <p>AI Engineer with a Mechanical Engineering Background and 15+ Years of Industrial Experience | Building ML, LLM &amp; Agentic AI Systems for Anomaly Detection, Optimization, and Industrial Automation</p>
+  <nav class="ico" aria-label="Profiles">
+    <a href="https://www.linkedin.com/in/hadi-sarhangi-fard-mech-eng/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a>
+    <a href="https://www.youtube.com/@hfard" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/></svg></a>
+  </nav>
+</header>
+
+<div id="tags"></div>
+<div id="credit">Designed &amp; built by Hadi Sarhangi Fard &nbsp;&middot;&nbsp; real-time procedural 3D with WebGL (Three.js) &nbsp;&middot;&nbsp; 2026</div>
+
+<aside id="card" aria-live="polite" aria-label="Repository preview">
+  <a id="cardLink" href="#" target="_blank" rel="noopener">
+    <div class="thumb"><img id="cardImg" alt=""></div>
+    <div class="meta"><h2 id="cardName"></h2><p id="cardDesc"></p></div>
+  </a>
+</aside>
+
+<nav class="sr" id="srlist" aria-label="Pinned repositories"></nav>
+<noscript><p style="position:fixed;left:24px;bottom:24px;color:#9db5d4;font:14px sans-serif">This page shows my pinned GitHub repositories as an interactive 3D network. Please enable JavaScript, or visit <a href="https://github.com/Hadifard">github.com/Hadifard</a>.</p></noscript>
+
+<script type="importmap">
+{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+/* ====================================================================
+   CONFIG  (the only things you may ever want to edit)
+   ==================================================================== */
+const CFG = {
+  login: 'Hadifard',                  // GitHub user whose pinned repos are shown
+  dataUrl: 'data/pinned.json',        // written daily by .github/workflows/update-pinned.yml
+  shift: 0.24,                        // fraction of the width kept free on the left (name, text, card); the network sits to the right of it
+  rotateIdle: 0.45,                   // slow auto-rotation while nothing is open
+  rotateOpen: 0.12,                   // even slower, galaxy-like drift while a repo card is open
+  maxRepos: 40,                       // every public repo gets a neuron (the sync script writes at most this many)
+  // pinned repos (max 6) sit in the large front neurons; every other public repo gets a smaller neuron further back
+  tourMax: 6,                         // README animation: how many repos the camera "tour" lights up in turn
+  // Label shown above a neuron = the model / topic the repo is about. First matching rule wins
+  // (tested against repo name + topics + description). Same label twice -> ML_01, ML_02, ...
+  // A repo can also force its own label with a "label" field in data/pinned.json.
+  labels: [
+    [/agent/i,                                                                'Agentic AI'],
+    [/\bllm\b|language[- ]model|\brag\b|chatbot/i,                            'LLM'],
+    [/generative|diffusion|\bgan\b|text-to-image/i,                           'Generative AI'],
+    [/lstm/i,                                                                 'LSTM'],
+    [/\brnn\b|\bgru\b|recurrent/i,                                            'RNN&GRU'],
+    [/attention|transformer|induction|\bbert\b|\bgpt\b/i,                     'Transformers'],
+    [/robot|niryo|manipulator/i,                                              'Robotics & ML'],
+    [/colori[sz]ation|\bcnn\b|convolution|computer-vision|deeplab|yolo|resnet|object detection/i, 'CNN'],
+    [/dropout|\bmlp\b|perceptron|neural-net|mnist|backprop/i,                 'ML'],
+    [/deep-learning|machine-learning|\bml\b|\bdl\b/i,                         'ML&DL'],
+  ],
+  labelFallback: 'AI',
+};
+
+const qs = new URLSearchParams(location.search);
+const CAPTURE = qs.has('capture');            // used by scripts/render-hero.mjs for the README animation
+if (CAPTURE) document.documentElement.classList.add('capture');
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const COARSE  = matchMedia('(pointer: coarse)').matches;
+const TAU = Math.PI * 2, DEG = Math.PI / 180;
+const LOOP = 12;                              // every animation is periodic over LOOP seconds
+const $ = id => document.getElementById(id);
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const smooth = (a, b, x) => { x = clamp((x - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rv = r => new THREE.Vector3(r()*2-1, r()*2-1, r()*2-1);
+
+/* ====================================================================
+   RENDERER
+   ==================================================================== */
+const canvas = $('gl');
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+} catch (e) { document.documentElement.classList.add('nogl'); throw e; }
+const PR = CAPTURE ? 1 : Math.min(devicePixelRatio || 1, COARSE ? 1.6 : 2);
+renderer.setPixelRatio(PR);
+renderer.setClearColor(0x02050d, 1);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 300);
+scene.add(camera);
+const brain = new THREE.Group();
+scene.add(brain);
+
+/* deep-space backdrop: dark navy fading to near-black, with sparse, distant stars (re-drawn 1:1 on resize) */
+let skyTex = null;
+function makeSky(w, h){
+  const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d');
+  const R = Math.hypot(w, h);
+  const bg = g.createRadialGradient(w*.60, h*.46, 0, w*.60, h*.46, R*.62);
+  bg.addColorStop(0, '#0b1428'); bg.addColorStop(.5, '#060b18'); bg.addColorStop(1, '#020309');
+  g.fillStyle = bg; g.fillRect(0, 0, w, h);
+  const r = mulberry32(424242), u = PR, n = Math.round(w*h/(3000*u*u));
+  for (let i=0;i<n;i++){
+    const x = r()*w, y = r()*h, big = r() < .06, a = big ? .55 + r()*.4 : .18 + r()*.5;
+    const warm = r() < .14, rad = (big ? .95 + r()*.7 : .35 + r()*.5) * u;
+    const col = warm ? '255,226,190' : (r() < .5 ? '205,225,255' : '170,200,255');
+    if (big){ const gl = g.createRadialGradient(x,y,0,x,y,rad*5); gl.addColorStop(0,`rgba(${col},${a*.35})`); gl.addColorStop(1,`rgba(${col},0)`); g.fillStyle=gl; g.fillRect(x-rad*5,y-rad*5,rad*10,rad*10); }
+    g.fillStyle = `rgba(${col},${a})`; g.beginPath(); g.arc(x, y, rad, 0, TAU); g.fill();
+  }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.minFilter = t.magFilter = THREE.LinearFilter; t.generateMipmaps = false;
+  return t;
+}
+function updateSky(){
+  const w = Math.min(4096, Math.round(W*PR)), h = Math.min(4096, Math.round(H*PR));
+  if (skyTex) skyTex.dispose();
+  skyTex = makeSky(w, h); scene.background = skyTex;
+}
+
+const composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(innerWidth*PR, innerHeight*PR, { type: THREE.HalfFloatType, samples: COARSE ? 2 : 4 }));
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), parseFloat(qs.get('bs')||'0.5'), 0.55, parseFloat(qs.get('bt')||'0.3'));
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+const controls = new OrbitControls(camera, canvas);
+controls.enablePan = false;
+controls.enableDamping = true; controls.dampingFactor = 0.06;
+controls.rotateSpeed = 0.55; controls.zoomSpeed = 0.7;
+controls.minPolarAngle = 0.35; controls.maxPolarAngle = Math.PI - 0.35;
+controls.autoRotate = !REDUCED && !CAPTURE; controls.autoRotateSpeed = CFG.rotateIdle;
+controls.enabled = !CAPTURE;
+
+/* shared uniforms */
+const U = {
+  uTime:  { value: 0 },
+  uFogN:  { value: 22 },
+  uFogF:  { value: 46 },
+  uScale: { value: 800 },
+  uBright:{ value: parseFloat(qs.get('b')||'0.24') },
+};
+
+/* ====================================================================
+   SHADERS
+   ==================================================================== */
+const DEND_VS = `
+attribute float aPath; attribute float aSeed;
+varying float vPath; varying float vSeed; varying vec3 vN; varying vec3 vV; varying float vDist;
+void main(){
+  vec4 mv = modelViewMatrix * vec4(position,1.0);
+  vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz);
+  vPath = aPath; vSeed = aSeed; vDist = -mv.z;
+  gl_Position = projectionMatrix * mv;
+}`;
+const DEND_FS = `
+uniform float uTime, uBoost, uW, uFogN, uFogF, uBright;
+varying float vPath; varying float vSeed; varying vec3 vN; varying vec3 vV; varying float vDist;
+void main(){
+  float f = 1.0 - abs(dot(normalize(vN), normalize(vV)));
+  float fade = mix(1.0, 0.32, smoothstep(uFogN, uFogF, vDist));
+  float wave = pow(0.5 + 0.5*sin(vPath*24.0 + uTime*uW + vSeed*6.2831), 7.0);
+  vec3 c = mix(vec3(0.30,0.46,0.70), vec3(0.85,0.95,1.0), pow(f,1.4));
+  float inten = (0.55+0.7*f)*(1.0+uBoost*0.9) + wave*1.1;
+  gl_FragColor = vec4(c*inten*fade*uBright*1.8, 1.0);
+}`;
+
+const SOMA_VS = `
+varying vec3 vN; varying vec3 vV; varying vec3 vP; varying float vDist;
+void main(){
+  vec4 mv = modelViewMatrix * vec4(position,1.0);
+  vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); vP = position; vDist = -mv.z;
+  gl_Position = projectionMatrix * mv;
+}`;
+const SOMA_FS = `
+uniform float uTime, uBoost, uPhase, uFogN, uFogF, uBright;
+varying vec3 vN; varying vec3 vV; varying vec3 vP; varying float vDist;
+float h(vec3 p){ return fract(sin(dot(p, vec3(127.1,311.7,74.7)))*43758.5453); }
+float vn(vec3 p){ vec3 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
+  return mix(mix(mix(h(i),h(i+vec3(1,0,0)),f.x),mix(h(i+vec3(0,1,0)),h(i+vec3(1,1,0)),f.x),f.y),
+             mix(mix(h(i+vec3(0,0,1)),h(i+vec3(1,0,1)),f.x),mix(h(i+vec3(0,1,1)),h(i+vec3(1,1,1)),f.x),f.y),f.z); }
+void main(){
+  vec3 N = normalize(vN), V = normalize(vV);
+  float facing = clamp(dot(N,V), 0.0, 1.0);
+  float rim = pow(1.0 - facing, 2.0);
+  float t = uTime * 0.5236;
+  float n = vn(vP*4.2 + vec3(sin(t), cos(t), sin(t*2.0))*0.6);
+  float pulse = 0.88 + 0.12*sin(uTime*1.0472*2.0 + uPhase);
+  float fade = mix(1.0, 0.4, smoothstep(uFogN, uFogF, vDist));
+  vec3 col = vec3(0.35,0.60,1.0)*rim*1.2 + vec3(1.0,0.80,0.55)*pow(facing,3.0)*0.95 + vec3(0.2,0.4,0.9)*0.18*n;
+  col *= pulse*(1.0+uBoost*0.8);
+  gl_FragColor = vec4(col*fade*uBright*1.9, 1.0);
+}`;
+
+const FIB_VS = `
+attribute float aPath; attribute float aSeed; attribute float aHue; attribute float aA; attribute float aB;
+varying float vPath; varying float vSeed; varying float vHue; varying float vA; varying float vB;
+varying vec3 vN; varying vec3 vV; varying float vDist;
+void main(){
+  vec4 mv = modelViewMatrix * vec4(position,1.0);
+  vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz);
+  vPath=aPath; vSeed=aSeed; vHue=aHue; vA=aA; vB=aB; vDist=-mv.z;
+  gl_Position = projectionMatrix * mv;
+}`;
+const FIB_FS = `
+uniform float uTime, uW, uHover, uHoverMix, uFogN, uFogF, uBright;
+varying float vPath; varying float vSeed; varying float vHue; varying float vA; varying float vB;
+varying vec3 vN; varying vec3 vV; varying float vDist;
+vec3 ramp(float h){
+  vec3 c0=vec3(0.05,0.25,0.95), c1=vec3(0.07,0.70,0.98), c2=vec3(0.22,0.95,0.52), c3=vec3(1.0,0.60,0.10), c4=vec3(1.0,0.20,0.06);
+  if(h<0.30) return mix(c0,c1,h/0.30);
+  if(h<0.55) return mix(c1,c2,(h-0.30)/0.25);
+  if(h<0.78) return mix(c2,c3,(h-0.55)/0.23);
+  return mix(c3,c4,(h-0.78)/0.22);
+}
+void main(){
+  float f = 1.0 - abs(dot(normalize(vN), normalize(vV)));
+  float ends = max(1.0 - smoothstep(0.0,0.42,vPath), smoothstep(0.58,1.0,vPath));
+  float hl = max(step(abs(vA-uHover),0.5), step(abs(vB-uHover),0.5)) * uHoverMix;
+  float h = clamp(pow(ends,0.85)*0.98*0.55 + vHue*0.05 + hl*0.22, 0.0, 1.0);
+  vec3 c = ramp(h);
+  float dirS = vSeed > 0.5 ? 1.0 : -1.0;
+  float wave = pow(0.5 + 0.5*sin(vPath*44.0*dirS - uTime*uW + vSeed*40.0), 9.0);
+  float inten = (0.42 + 0.85*pow(f,1.2)) * (1.0 + hl*1.0) + wave*(0.95 + hl*1.4);
+  float fade = mix(1.0, 0.30, smoothstep(uFogN, uFogF, vDist));
+  gl_FragColor = vec4(c * inten * fade * uBright, 1.0);
+}`;
+
+const PTS_VS = `
+attribute float aSize; attribute vec3 aCol; attribute float aSeed;
+uniform float uScale, uTime, uTw, uFogN, uFogF;
+varying vec3 vC; varying float vA;
+void main(){
+  vec4 mv = modelViewMatrix * vec4(position,1.0);
+  float d = -mv.z;
+  float tw = 0.62 + 0.38*sin(uTime*uTw + aSeed*6.2831);
+  gl_PointSize = max(1.7, aSize * uScale / d);
+  vC = aCol * tw; vA = mix(1.0, 0.35, smoothstep(uFogN, uFogF, d));
+  gl_Position = projectionMatrix * mv;
+}`;
+const PTS_FS = `
+uniform float uBright;
+varying vec3 vC; varying float vA;
+void main(){
+  float r = length(gl_PointCoord - 0.5) * 2.0;
+  if(r > 1.0) discard;
+  float a = exp(-r*r*3.4);
+  vec3 col = vC * a + vec3(1.0,0.97,0.9) * pow(1.0 - r, 7.0) * 0.55;
+  gl_FragColor = vec4(col * vA * uBright, 1.0);
+}`;
+
+function additive(mat){ mat.transparent = true; mat.blending = THREE.AdditiveBlending; mat.depthWrite = false; return mat; }
+const W_DEND = TAU * 12 / LOOP, W_FIB = TAU * 9 / LOOP, TW = TAU * 3 / LOOP;
+
+/* ====================================================================
+   GEOMETRY HELPERS
+   ==================================================================== */
+class Buf {
+  constructor(names){ this.pos=[]; this.nor=[]; this.idx=[]; this.names=names; this.a={}; names.forEach(n=>this.a[n]=[]); }
+  get n(){ return this.pos.length/3; }
+  geometry(){
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(this.pos,3));
+    g.setAttribute('normal',   new THREE.Float32BufferAttribute(this.nor,3));
+    this.names.forEach(n=>g.setAttribute(n, new THREE.Float32BufferAttribute(this.a[n],1)));
+    g.setIndex(this.idx.length>65000 ? new THREE.Uint32BufferAttribute(this.idx,1) : new THREE.Uint16BufferAttribute(this.idx,1));
+    return g;
+  }
+}
+const _T=new THREE.Vector3(), _N=new THREE.Vector3(), _B=new THREE.Vector3(), _X=new THREE.Vector3();
+/* tapered tube with parallel-transport frames; `ex(i)` returns per-ring extra attribute values */
+function addTube(buf, pts, radii, radial, ex){
+  const m = pts.length, base = buf.n, row = radial + 1;
+  let have = false;
+  for (let i=0;i<m;i++){
+    const a = pts[Math.max(0,i-1)], b = pts[Math.min(m-1,i+1)];
+    _T.subVectors(b,a).normalize();
+    if (!have){ _X.set(Math.abs(_T.y)<0.9?0:1, Math.abs(_T.y)<0.9?1:0, 0); _N.crossVectors(_T,_X).normalize(); have = true; }
+    else { _N.addScaledVector(_T, -_N.dot(_T)).normalize(); }
+    _B.crossVectors(_T,_N).normalize();
+    const e = ex(i);
+    for (let j=0;j<=radial;j++){
+      const th = j/radial*TAU, c = Math.cos(th), s = Math.sin(th);
+      const nx=_N.x*c+_B.x*s, ny=_N.y*c+_B.y*s, nz=_N.z*c+_B.z*s;
+      buf.pos.push(pts[i].x+nx*radii[i], pts[i].y+ny*radii[i], pts[i].z+nz*radii[i]);
+      buf.nor.push(nx,ny,nz);
+      for (const k in e) buf.a[k].push(e[k]);
+    }
+  }
+  for (let i=0;i<m-1;i++) for (let j=0;j<radial;j++){
+    const a = base+i*row+j, b = a+row;
+    buf.idx.push(a,b,a+1, b,b+1,a+1);
+  }
+}
+function fibDirs(n, rnd){
+  const q = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(rnd()-.5,rnd()-.5,rnd()-.5).normalize(), rnd()*TAU);
+  const out = [];
+  for (let i=0;i<n;i++){
+    const y = 1-(i+.5)*2/n, r = Math.sqrt(1-y*y), ph = i*2.39996 + rnd()*.7;
+    out.push(new THREE.Vector3(Math.cos(ph)*r, y, Math.sin(ph)*r).add(rv(rnd).multiplyScalar(.18)).normalize().applyQuaternion(q));
+  }
+  return out;
+}
+function hash3(x,y,z){ const s=Math.sin(x*127.1+y*311.7+z*74.7)*43758.5453; return s-Math.floor(s); }
+function vnoise(x,y,z){
+  const xi=Math.floor(x),yi=Math.floor(y),zi=Math.floor(z); let xf=x-xi,yf=y-yi,zf=z-zi;
+  xf=xf*xf*(3-2*xf); yf=yf*yf*(3-2*yf); zf=zf*zf*(3-2*zf);
+  const L=(a,b,t)=>a+(b-a)*t, h=(i,j,k)=>hash3(xi+i,yi+j,zi+k);
+  return L(L(L(h(0,0,0),h(1,0,0),xf),L(h(0,1,0),h(1,1,0),xf),yf), L(L(h(0,0,1),h(1,0,1),xf),L(h(0,1,1),h(1,1,1),xf),yf), zf);
+}
+function rampJS(h){
+  const C=[[.05,.25,.95],[.07,.70,.98],[.22,.95,.52],[1,.60,.10],[1,.20,.06]], S=[0,.30,.55,.78,1];
+  for (let i=0;i<4;i++) if (h<=S[i+1]){ const t=(h-S[i])/(S[i+1]-S[i]); return C[i].map((v,k)=>v+(C[i+1][k]-v)*t); }
+  return C[4];
+}
+
+/* sprite textures */
+function tex(size, draw){ const c=document.createElement('canvas'); c.width=c.height=size; draw(c.getContext('2d'),size); const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; return t; }
+const HALO = tex(256,(g,s)=>{ const r=g.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+  r.addColorStop(0,'rgba(255,225,185,.95)'); r.addColorStop(.06,'rgba(255,165,90,.75)'); r.addColorStop(.18,'rgba(255,110,40,.30)');
+  r.addColorStop(.40,'rgba(60,130,255,.16)'); r.addColorStop(.70,'rgba(25,70,255,.04)'); r.addColorStop(1,'rgba(10,30,255,0)');
+  g.fillStyle=r; g.fillRect(0,0,s,s); });
+
+/* ====================================================================
+   NEURON  (soma + tapered, branching dendrite tree + synaptic boutons)
+   ==================================================================== */
+function makeNeuron(idx, pos, seed, k){
+  k = k || 1;
+  const rnd = mulberry32(seed);
+  const buf = new Buf(['aPath','aSeed']);
+  const branches = [], tips = [], bouts = [];
+  const somaR = (0.40 + rnd()*0.10) * 0.78 * k;
+  let reach = 0;
+
+  function grow(o, d, len, r0, depth, off){
+    const nc = 5, pts = [o.clone()], dir = d.clone(), step = len/(nc-1);
+    for (let i=1;i<nc;i++){ dir.add(rv(rnd).multiplyScalar(0.30 + 0.10*depth)).normalize(); pts.push(pts[i-1].clone().addScaledVector(dir, step)); }
+    const m = [12,10,8,6][depth];
+    const dense = new THREE.CatmullRomCurve3(pts,false,'centripetal').getPoints(m-1);
+    const r1 = r0*(depth<3?0.55:0.42), radii=[], paths=[];
+    for (let i=0;i<m;i++){ const t=i/(m-1); let r=r0+(r1-r0)*t; if(depth===0) r*=1+1.2*Math.pow(1-t,3); radii.push(r); paths.push(off+len*t); }
+    branches.push({ dense, radii, paths, depth, seed: rnd() });
+    reach = Math.max(reach, off+len);
+    if (rnd()<0.2) bouts.push(dense[1+Math.floor(rnd()*(m-2))].clone());
+    const end = dense[m-1], ed = end.clone().sub(dense[m-2]).normalize();
+    if (depth<3){
+      const k = depth===0 ? 2+(rnd()<.5?1:0) : 2;
+      for (let c=0;c<k;c++) grow(end, ed.clone().add(rv(rnd).multiplyScalar(.85)).normalize(), len*(.62+rnd()*.22), r1*.92, depth+1, off+len);
+      if (depth<2 && rnd()<.65){
+        const j = Math.floor(m*(.45+rnd()*.25)), sp = dense[j], td = dense[j+1].clone().sub(dense[j-1]).normalize();
+        grow(sp, td.add(rv(rnd).multiplyScalar(1.1)).normalize(), len*.5, radii[j]*.8, depth+1, paths[j]);
+      }
+    } else {
+      tips.push({ p:end.clone(), d:ed });
+      if (rnd()<.6) bouts.push(end.clone());
+    }
+  }
+  const nPri = k < 1 ? 5 + Math.floor(rnd()*2) : 7 + Math.floor(rnd()*3);
+  for (const d of fibDirs(nPri, rnd)) grow(pos.clone().addScaledVector(d, somaR*.7), d, (1.35+rnd()*.75) * (k<1 ? .62 : 1), (.13+rnd()*.03) * .34 * Math.sqrt(k), 0, 0);
+
+  for (const b of branches){
+    const rad = [7,6,5,4][b.depth], sd = b.seed;
+    addTube(buf, b.dense, b.radii, rad, i => ({ aPath: b.paths[i]/reach, aSeed: sd }));
+  }
+
+  const dendMat = additive(new THREE.ShaderMaterial({ vertexShader:DEND_VS, fragmentShader:DEND_FS, side:THREE.DoubleSide,
+    uniforms:{ uTime:U.uTime, uFogN:U.uFogN, uFogF:U.uFogF, uBright:U.uBright, uW:{value:W_DEND}, uBoost:{value:0} } }));
+  const dend = new THREE.Mesh(buf.geometry(), dendMat); dend.frustumCulled = false;
+
+  const sg = new THREE.IcosahedronGeometry(somaR, 4), sp = sg.attributes.position, v = new THREE.Vector3(), o = rnd()*50;
+  for (let i=0;i<sp.count;i++){ v.fromBufferAttribute(sp,i); const n=v.clone().normalize();
+    const d = 1 + .20*(vnoise(n.x*1.9+o,n.y*1.9+o,n.z*1.9+o)-.5) + .07*(vnoise(n.x*5+o,n.y*5,n.z*5)-.5);
+    v.copy(n).multiplyScalar(somaR*d); sp.setXYZ(i,v.x,v.y,v.z); }
+  sg.computeVertexNormals();
+  const somaMat = additive(new THREE.ShaderMaterial({ vertexShader:SOMA_VS, fragmentShader:SOMA_FS,
+    uniforms:{ uTime:U.uTime, uFogN:U.uFogN, uFogF:U.uFogF, uBright:U.uBright, uBoost:{value:0}, uPhase:{value:rnd()*TAU} } }));
+  const soma = new THREE.Mesh(sg, somaMat); soma.position.copy(pos); soma.frustumCulled = false;
+
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map:HALO, color:0xffffff, transparent:true, blending:THREE.AdditiveBlending, depthWrite:false, fog:false, opacity:.9 }));
+  halo.position.copy(pos); halo.scale.setScalar(somaR*7.5);
+
+  const g = new THREE.Group(); g.add(dend, soma, halo); brain.add(g);
+  return { idx, pos, somaR, big: k >= 1, tips, bouts, group:g, dendMat, somaMat, halo, boost:0, target:0, haloBase:somaR*7.5 };
+}
+
+/* ====================================================================
+   NETWORK  (neurons + fibre bundles + beads + dust + bokeh backdrop)
+   ==================================================================== */
+/* the pinned repos: 6 large neurons near the viewer, spread across the view */
+const GAP = 1.18;              // spacing between neuron cores (1 = old, larger = more air between the neurons)
+const FRONT = [
+  [-6.0, 0.6, 2.2], [-2.6, 3.0, 3.2], [ 1.2,-0.2, 3.8], [ 4.6, 2.8, 2.4], [-2.4,-2.9, 2.8], [ 5.2,-2.6, 2.0],
+].map(([x,y,z]) => [x*GAP, y, z]);
+const SMALL_K = 0.45;          // size of the non-pinned neurons relative to the pinned ones
+/* all other public repos: small neurons scattered (deterministically) further back, with a minimum spacing */
+function layoutFor(total, big, base){
+  const pts = FRONT.slice(0, big), s = Math.max(1, Math.cbrt(base / 16) * 0.92);   // size of the frame depends on `base` only, so adding neurons never enlarges it
+  const r = mulberry32(777), A = [12.2*s*GAP, 6.0*s, 4.6*s*GAP]; let tries = 0;
+  while (pts.length < base){
+    const v = rv(r); if (v.lengthSq() > 1) continue;
+    const p = [1.2 + v.x*A[0], v.y*A[1], -2.6 + v.z*A[2]], md = 2.1 * GAP * 1.08 * Math.max(.45, 1 - (tries++)/6000);
+    if (p[2] > 0.4) continue;
+    if (pts.every(q => Math.hypot(q[0]-p[0], q[1]-p[1], q[2]-p[2]) > md)) pts.push(p);
+  }
+  /* the extra (doubled) neurons: around the edges (left/right/back), flattened vertically so the network stays inside the same rectangle */
+  tries = 0;
+  while (pts.length < total){
+    const v = rv(r); if (v.lengthSq() > 1) continue;
+    if (Math.hypot(v.x, v.z) < .55) continue;
+    const p = [1.2 + v.x*A[0], v.y*A[1]*.6, -2.6 + v.z*A[2]], md = 1.5 * GAP * 1.12 * Math.max(.5, 1 - (tries++)/6000);
+    if (p[2] > 0.4) continue;
+    if (pts.every(q => Math.hypot(q[0]-p[0], q[1]-p[1], q[2]-p[2]) > md)) pts.push(p);
+  }
+  return { pts, s };
+}
+let neurons = [], fiberMat = null, mover = null, dust = null, layoutMode = '';
+let extent = { w: 12.4, h: 6.9 };
+
+function pointsMat(extra){ return additive(new THREE.ShaderMaterial({ vertexShader:PTS_VS, fragmentShader:PTS_FS,
+  uniforms:{ uScale:U.uScale, uTime:U.uTime, uFogN:U.uFogN, uFogF:U.uFogF, uBright:U.uBright, uTw:{value:TW}, ...(extra||{}) } })); }
+function pointsGeo(pos, col, size, seed){
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos,3));
+  g.setAttribute('aCol', new THREE.Float32BufferAttribute(col,3));
+  g.setAttribute('aSize', new THREE.Float32BufferAttribute(size,1));
+  g.setAttribute('aSeed', new THREE.Float32BufferAttribute(seed,1));
+  return g;
+}
+
+function clearBrain(){
+  brain.traverse(o=>{ if(o.geometry) o.geometry.dispose(); if(o.material){ if(o.material.map&&o.material.map!==HALO) o.material.map.dispose(); o.material.dispose(); } });
+  brain.clear();
+}
+
+function build(mode){
+  clearBrain(); layoutMode = mode;
+  const rnd = mulberry32(20261018);
+  const portrait = mode === 'portrait';
+  const pinnedN = repos.filter(r=>r.pinned).length;
+  const bigN = Math.min(FRONT.length, pinnedN || Math.min(FRONT.length, repos.length) || FRONT.length);
+  const base = Math.max(16, bigN + 10, repos.length), total = Math.min(90, base * 2);   // twice as many neurons as before
+  const lay = layoutFor(total, bigN, base), sc = lay.s;
+  const L = lay.pts.map(([x,y,z]) => portrait ? new THREE.Vector3(x*.5, y*1.55, z*.9) : new THREE.Vector3(x,y,z));
+  extent = portrait ? { w: 8.2*sc, h: 10.2*sc } : { w: 14.6*sc*GAP*.96, h: 7.0*sc };
+  neurons = L.map((p,i)=>makeNeuron(i,p,1000+i*7919, i<bigN ? 1 : SMALL_K));
+
+  /* edges: each neuron to its 3 nearest, + a few long-range links */
+  const E = new Map(); const add=(a,b)=>{ if(a!==b) E.set(a<b?a+'-'+b:b+'-'+a,[Math.min(a,b),Math.max(a,b)]); };
+  neurons.forEach((n,i)=>{ neurons.map((m,j)=>[j,n.pos.distanceTo(m.pos)]).filter(x=>x[0]!==i).sort((a,b)=>a[1]-b[1]).slice(0,3).forEach(x=>add(i,x[0])); });
+  for (let a=0;a<bigN;a++) for (let b=a+1;b<bigN;b++) if (neurons[a].pos.distanceTo(neurons[b].pos) < 5.6) add(a,b);   // the large neurons are well connected to each other
+  neurons.forEach((n,i)=>{ if (i<bigN) return; let bi=0,bd=1e9; for (let b=0;b<bigN;b++){ const d=n.pos.distanceTo(neurons[b].pos); if(d<bd){bd=d;bi=b;} } add(i,bi); });   // every small neuron is tied to its nearest large one
+
+  const FB = new Buf(['aPath','aSeed','aHue','aA','aB']);
+  const samples = [];                       // [{pts, heat}] for beads
+  const center = new THREE.Vector3(0,0,0);
+  function fiber(A,B,bundle,spread){
+    const ab = B.pos.clone().sub(A.pos).normalize();
+    const pick=(N,dir)=>{ let best=null,bs=-9; for(let k=0;k<7;k++){ const t=N.tips[Math.floor(rnd()*N.tips.length)]; const s=t.p.clone().sub(N.pos).normalize().dot(dir); if(s>bs){bs=s;best=t;} } return best; };
+    const ta = pick(A,ab), tb = pick(B,ab.clone().negate());
+    const pa = ta.p, pb = tb.p;
+    const c1 = pa.clone().lerp(pb,.33).add(bundle.o1).add(rv(rnd).multiplyScalar(spread));
+    const c2 = pa.clone().lerp(pb,.66).add(bundle.o2).add(rv(rnd).multiplyScalar(spread));
+    const ctrl = [pa, pa.clone().addScaledVector(ta.d,.55), c1, c2, pb.clone().addScaledVector(tb.d,.55), pb];
+    const N = 70, pts = new THREE.CatmullRomCurve3(ctrl,false,'centripetal',.5).getPoints(N);
+    const p1=rnd()*TAU,p2=rnd()*TAU,p3=rnd()*TAU;
+    pts.forEach((p,i)=>{ const w=Math.sin(Math.PI*i/N)*.055; p.x+=Math.sin(i*.7+p1)*w; p.y+=Math.sin(i*.53+p2)*w; p.z+=Math.sin(i*.61+p3)*w; });
+    const r = (.011 + rnd()*.010) * .55, hue = Math.pow(rnd(),2.2)*.9, sd = rnd();
+    addTube(FB, pts, pts.map(()=>r), 4, i=>({ aPath:i/N, aSeed:sd, aHue:hue, aA:A.idx, aB:B.idx }));
+    samples.push({ pts, hue, A:A.idx, B:B.idx });
+  }
+  const bundleFor=(A,B,bulge)=>{ const d=Math.min(A.pos.distanceTo(B.pos), 7), ab=B.pos.clone().sub(A.pos).normalize();
+    const perp=new THREE.Vector3().crossVectors(ab, rv(rnd)).normalize();
+    const out=A.pos.clone().add(B.pos).multiplyScalar(.5).sub(center).normalize().multiplyScalar(d*bulge);
+    return { o1: perp.clone().multiplyScalar((rnd()-.5)*2*d*.2).add(out), o2: perp.clone().multiplyScalar((rnd()-.5)*2*d*.2).add(out) }; };
+  for (const [a,b] of E.values()){
+    const A=neurons[a], B=neurons[b], d=A.pos.distanceTo(B.pos), n=clamp(Math.round(15-d*1.5),5,11), bd=bundleFor(A,B,.1);
+    for (let i=0;i<n;i++) fiber(A,B,bd,.22+rnd()*.3);
+  }
+  for (let i=0, nf=Math.min(150, Math.round(50*neurons.length/16)); i<nf; i++){   // long, outward-bulging filler fibres -> fills the cortex-like silhouette
+    const a=Math.floor(rnd()*neurons.length);
+    const near=neurons.filter(n=>n.idx!==a).sort((p,q)=>p.pos.distanceTo(neurons[a].pos)-q.pos.distanceTo(neurons[a].pos)).slice(0,6);   // only close neighbours: no long arcs flying out of the network
+    const b=near[Math.floor(rnd()*near.length)].idx;
+    fiber(neurons[a],neurons[b],bundleFor(neurons[a],neurons[b],.22),.35);
+  }
+  const fg = FB.geometry();
+  fiberMat = additive(new THREE.ShaderMaterial({ vertexShader:FIB_VS, fragmentShader:FIB_FS, side:THREE.DoubleSide,
+    uniforms:{ uTime:U.uTime, uFogN:U.uFogN, uFogF:U.uFogF, uBright:U.uBright, uW:{value:W_FIB}, uHover:{value:-1}, uHoverMix:{value:0} } }));
+  const fm = new THREE.Mesh(fg, fiberMat); fm.frustumCulled=false; brain.add(fm);
+
+  /* static beads sitting on fibres (the glowing nodules of the reference image) */
+  { const P=[],C=[],S=[],Q=[];
+    for (const s of samples) for (let k=0;k<9;k++){
+      const u=.06+rnd()*.88, p=s.pts[Math.round(u*(s.pts.length-1))], heat=clamp(Math.max(1-smooth(0,.3,u),smooth(.7,1,u))*.9+s.hue*.62,0,1);
+      let c=rampJS(heat).map(v=>v*.7+.3); if (rnd()<.45) c=[1,.92,.8];
+      P.push(p.x,p.y,p.z); C.push(...c); S.push((.035+rnd()*.05)*1.25); Q.push(rnd());
+    }
+    for (const n of neurons) for (const b of n.bouts){   // orange synaptic boutons on the dendrites
+      if (rnd() < 1.4) { P.push(b.x,b.y,b.z); C.push(1,.56,.17); S.push((.05+rnd()*.05)*1.4); Q.push(rnd()); }
+    }
+    const pts=new THREE.Points(pointsGeo(P,C,S,Q), pointsMat()); pts.frustumCulled=false; brain.add(pts);
+  }
+  /* travelling pulses (positions updated per frame, strictly periodic in LOOP) */
+  { const cnt=130, P=new Float32Array(cnt*3), C=[],S=[],Q=[], list=[];
+    for (let i=0;i<cnt;i++){ const s=samples[Math.floor(rnd()*samples.length)];
+      list.push({ s, off:rnd(), n:1+Math.floor(rnd()*2), dir:rnd()<.5?1:-1 });
+      const c=rampJS(clamp(.3+s.hue*.6,0,1)).map(v=>v*.5+.5); C.push(...c); S.push(.07+rnd()*.05); Q.push(rnd()); }
+    const g=pointsGeo(P,C,S,Q); const m=new THREE.Points(g,pointsMat()); m.frustumCulled=false; brain.add(m);
+    mover={ g, list, P }; }
+
+  /* out-of-focus bokeh: few, small, faint warm-white specks scattered through the volume (not glued to the screen) */
+  { const disc = tex(128,(g,sz)=>{ const r=g.createRadialGradient(sz/2,sz/2,0,sz/2,sz/2,sz/2);
+      r.addColorStop(0,'rgba(255,214,170,.34)'); r.addColorStop(.55,'rgba(255,200,150,.26)'); r.addColorStop(.85,'rgba(255,200,150,.14)'); r.addColorStop(1,'rgba(255,190,140,0)'); g.fillStyle=r; g.fillRect(0,0,sz,sz); });
+    const br = mulberry32(99);
+    for (let i=0;i<34;i++){
+      const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map:disc, color:new THREE.Color().setHSL(.08+br()*.03,.55,.72), transparent:true, blending:THREE.AdditiveBlending, depthWrite:false, fog:false, opacity:.10+br()*.18 }));
+      sp.position.set((br()-.5)*extent.w*1.7, (br()-.5)*extent.h*1.9, -14 + br()*22); sp.scale.setScalar(.22 + br()*.55); brain.add(sp);
+    }
+  }
+  /* atmospheric dust */
+  { const cnt=520,P=[],C=[],S=[],Q=[];
+    for (let i=0;i<cnt;i++){ const v=rv(rnd).normalize().multiplyScalar(Math.cbrt(rnd())); P.push(v.x*extent.w*1.5,v.y*extent.h*1.5,v.z*13);
+      const hot=rnd()<.12; C.push(...(hot?[1,.55,.2]:[.35,.6,1]).map(x=>x*(.35+rnd()*.4))); S.push(.03+rnd()*.05); Q.push(rnd()); }
+    dust=new THREE.Points(pointsGeo(P,C,S,Q), pointsMat()); dust.frustumCulled=false; brain.add(dust); }
+
+  assignRepos();
+}
+
+/* ====================================================================
+   PINNED REPOS  (data/pinned.json, refreshed by a GitHub Action)
+   ==================================================================== */
+let repos = [];
+const tagsEl = $('tags'), srEl = $('srlist');
+let tagEls = [];
+async function loadRepos(){
+  try { const r = await fetch(CFG.dataUrl, { cache:'no-cache' }); if (r.ok){ const j = await r.json(); const a = Array.isArray(j) ? j : j.repos; if (a && a.length) return [...a].sort((x,y)=>(y.pinned?1:0)-(x.pinned?1:0)).slice(0, CFG.maxRepos); } } catch(e){}
+  try { // fallback: most recently pushed public repos (works without the Action)
+    const r = await fetch(`https://api.github.com/users/${CFG.login}/repos?sort=pushed&per_page=100`); if (r.ok){
+      const a = await r.json(); return a.slice(0, CFG.maxRepos).map(x=>({ name:x.name, description:x.description||'', url:x.html_url, language:x.language, stars:x.stargazers_count,
+        images:[`https://opengraph.githubassets.com/1/${x.full_name}`] })); } } catch(e){}
+  return [];
+}
+function topicOf(r){
+  if (r.label) return String(r.label);
+  const hay = [r.name, (r.topics||[]).join(' '), r.description||''].join(' ').replace(/[-_]/g,' ') + ' ' + (r.topics||[]).join(' ');
+  const raw = [r.name, (r.topics||[]).join(' '), r.description||''].join(' ');
+  for (const [re, name] of CFG.labels) if (re.test(raw) || re.test(hay)) return name;
+  return CFG.labelFallback;
+}
+function assignRepos(){
+  tagsEl.innerHTML=''; srEl.innerHTML=''; tagEls=[];
+  neurons.forEach(n=>{ n.repo=null; });
+  const names = repos.map(topicOf), total = {}, seen = {};
+  names.forEach(n=>{ total[n]=(total[n]||0)+1; });
+  repos.forEach((r,i)=>{
+    const ni = i; if (!neurons[ni]) return;
+    neurons[ni].repo = r; r._n = ni;
+    let label = names[i]; if (total[label]>1){ seen[label]=(seen[label]||0)+1; label += '_'+String(seen[label]).padStart(2,'0'); }
+    const el = document.createElement('div'); el.className='tag' + (neurons[ni].big ? '' : ' sm'); el.innerHTML='<i class="ring"></i><span class="txt"></span>'; el.querySelector('.txt').textContent = label;
+    tagsEl.appendChild(el); neurons[ni].tag = el; tagEls.push(el);
+    const a = document.createElement('a'); a.href=r.url; a.textContent=r.name; a.target='_blank'; a.rel='noopener';
+    a.addEventListener('focus',()=>activate(ni)); srEl.appendChild(a);
+  });
+}
+
+/* ====================================================================
+   REPO CARD  (thumbnail + repo name + description, opens at the left)
+   ==================================================================== */
+const card = $('card'), cardImg = $('cardImg'), cardName = $('cardName'), cardDesc = $('cardDesc'), cardLink = $('cardLink');
+let cardToken = 0, curRepo = null, cardHover = false;
+const imgCache = new Map();
+function loadImg(url){
+  if (imgCache.has(url)) return imgCache.get(url);
+  const p = new Promise(res=>{ const im=new Image(); im.decoding='async'; im.crossOrigin='anonymous'; im.referrerPolicy='no-referrer'; im.onload=()=>res(url); im.onerror=()=>res(null); im.src=url; });
+  imgCache.set(url,p); return p;
+}
+async function firstInOrder(urls){      // first image (in listed order) that actually loads
+  for (const u of urls){ const ok = await Promise.race([loadImg(u), new Promise(r=>setTimeout(()=>r(null),3500))]); if (ok) return ok; }
+  return null;
+}
+function fallbackCard(r){      // generated preview if a repo has no loadable image
+  const c=document.createElement('canvas'); c.width=800; c.height=450; const g=c.getContext('2d'); let h=0; for(const ch of r.name) h=(h*31+ch.charCodeAt(0))>>>0;
+  const rnd=mulberry32(h); g.fillStyle='#02060c'; g.fillRect(0,0,800,450);
+  const pts=[]; for(let i=0;i<28;i++) pts.push([rnd()*800,rnd()*450]);
+  g.lineWidth=1; for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){ const d=Math.hypot(pts[i][0]-pts[j][0],pts[i][1]-pts[j][1]); if(d<190){ g.strokeStyle=`rgba(80,150,255,${.55-d/380})`; g.beginPath(); g.moveTo(...pts[i]); g.lineTo(...pts[j]); g.stroke(); } }
+  pts.forEach(p=>{ g.fillStyle='rgba(255,170,90,.9)'; g.beginPath(); g.arc(p[0],p[1],2.4,0,TAU); g.fill(); });
+  return c.toDataURL('image/png');
+}
+async function openCard(r){
+  const token = ++cardToken; curRepo = r;
+  cardName.textContent = r.name; cardLink.href = r.url; cardImg.alt = r.name + ' preview';
+  cardDesc.textContent = (r.description && r.description.trim()) || (r.topics&&r.topics.length ? r.topics.join(' \u00b7 ') : r.name.replace(/[-_]/g,' '));
+  cardImg.classList.remove('show');
+  card.classList.add('on'); document.body.classList.add('cardon');
+  let url = (r.images && r.images.length) ? await firstInOrder(r.images.slice(0,6)) : null;
+  if (token !== cardToken) return;
+  cardImg.src = url || fallbackCard(r); cardImg.classList.add('show');
+}
+function closeCard(){ cardToken++; card.classList.remove('on'); document.body.classList.remove('cardon'); curRepo = null; }
+
+/* ====================================================================
+   INTERACTION
+   ==================================================================== */
+const ptr = { x:-1e4, y:-1e4, inside:false, down:false, moved:0, type:'mouse', sx:0, sy:0, onCv:false };
+let active = -1, pinned = false, closeAt = 0, lastInteract = 0, W=1, H=1;
+function activate(ni){ if (active===ni) return; active=ni; const n=neurons[ni]; if(n&&n.repo) openCard(n.repo); }
+function deactivate(){ pinned=false; if (active<0) return; active=-1; closeCard(); }
+window.addEventListener('pointermove',e=>{ ptr.x=e.clientX; ptr.y=e.clientY; ptr.type=e.pointerType; ptr.inside=true; ptr.onCv=(e.target===canvas); if(ptr.down) ptr.moved=Math.max(ptr.moved,Math.hypot(e.clientX-ptr.sx,e.clientY-ptr.sy)); });
+window.addEventListener('pointerleave',()=>{ ptr.inside=false; });
+document.addEventListener('mouseleave',()=>{ ptr.inside=false; });
+canvas.addEventListener('pointerdown',e=>{ ptr.down=true; ptr.moved=0; ptr.sx=e.clientX; ptr.sy=e.clientY; ptr.x=e.clientX; ptr.y=e.clientY; ptr.type=e.pointerType; canvas.classList.add('drag'); document.body.classList.add('touched'); lastInteract=performance.now(); });
+window.addEventListener('pointerup',e=>{
+  if(!ptr.down) return; ptr.down=false; canvas.classList.remove('drag'); lastInteract=performance.now();
+  if (ptr.moved<6 && e.target===canvas){
+    const c = pick(e.clientX,e.clientY);
+    if (c<0) return;
+    /* 1st click: only the card opens (and stays until another neuron is clicked). Clicking the same neuron again opens the repo. */
+    if (pinned && active===c) window.open(neurons[c].repo.url,'_blank','noopener');
+    else { pinned = true; closeAt = 0; activate(c); }
+  }
+});
+card.addEventListener('pointerenter',()=>{ cardHover=true; });
+card.addEventListener('pointerleave',()=>{ cardHover=false; if(!pinned) closeAt=performance.now()+500; });
+addEventListener('keydown',e=>{ if(e.key==='Escape') deactivate(); });
+
+const _v=new THREE.Vector3();
+function projectN(n){ _v.copy(n.pos); brain.localToWorld(_v); const d=camera.position.distanceTo(_v); _v.project(camera);
+  const ppu = H/(2*Math.tan(camera.fov*DEG/2)*d); return { x:(_v.x*.5+.5)*W, y:(-_v.y*.5+.5)*H, d, ppu, behind:_v.z>1 }; }
+function pick(px,py){
+  let best=-1,bd=1e9;
+  for (const n of neurons){ if(!n.repo) continue; const p=projectN(n); if(p.behind) continue;
+    const R=Math.max(n.big?34:20, p.ppu*1.55), dist=Math.hypot(px-p.x,py-p.y); if(dist<R && dist<bd){ bd=dist; best=n.idx; } }
+  return best;
+}
+
+/* ====================================================================
+   SIZE / CAMERA
+   ==================================================================== */
+let dist0 = 30, userZoom = false, hdrRect = { l:0, r:0, t:0, b:0 };
+const shiftNow = () => layoutMode === 'portrait' ? 0 : CFG.shift;
+function measureHeader(){ const r=document.querySelector('header.id'), box=el=>{ const g=document.createRange(); g.selectNodeContents(el); return g.getBoundingClientRect(); };
+  const h=box(r.querySelector(CAPTURE?'.cap .t':'h1')), p=box(r.querySelector(CAPTURE?'.cap .s':'p')), n=r.querySelector('nav').getBoundingClientRect();
+  hdrRect={ l:Math.min(h.left,p.left), r:Math.max(h.right,p.right), t:h.top, b:Math.max(p.bottom,n.bottom) };
+  /* card: 2:3 (width:height = 1:1.5), at the left just below the icons; bottom-centre on narrow screens */
+  let cw, left, top;
+  if (layoutMode === 'portrait'){ cw = clamp(Math.min(W*.5, H*.36/1.5), 150, 250); left = (W-cw)/2; top = H - cw*1.5 - 14; }
+  else { top = hdrRect.b + 26; cw = clamp(Math.min(W*.235, (H - top - 22)/1.5), 170, 320); left = r.getBoundingClientRect().left; }
+  card.style.setProperty('--cw', cw.toFixed(1)+'px'); card.style.setProperty('--cl', left.toFixed(1)+'px'); card.style.setProperty('--ct', top.toFixed(1)+'px');
+}
+function applyView(){ const s=shiftNow(); camera.setViewOffset(W, H, -W*s/2, 0, W, H); }   // network centred in the free area right of the text
+function fitCamera(){
+  const t = Math.tan(camera.fov*DEG/2), a = W/H, s = shiftNow();
+  const need = Math.max((extent.h+0.6)/t, (extent.w+0.8)/(t*a*(1-s)));
+  dist0 = need;
+  controls.minDistance = need*.38; controls.maxDistance = need*1.7;
+  const dir = camera.position.clone().normalize(); if(!dir.lengthSq()) dir.set(0,.22,1).normalize();
+  if (!userZoom) camera.position.copy(dir.multiplyScalar(need));
+}
+function onResize(){
+  W = innerWidth; H = innerHeight;
+  renderer.setSize(W,H,false); composer.setSize(W,H); camera.aspect=W/H; camera.updateProjectionMatrix();
+  U.uScale.value = H*PR/(2*Math.tan(camera.fov*DEG/2));
+  const m = W/H < .85 ? 'portrait' : 'wide';
+  if (m!==layoutMode && neurons.length){ build(m); }
+  fitCamera(); applyView(); measureHeader(); updateSky();
+}
+controls.addEventListener('start',()=>{ userZoom = true; });
+addEventListener('resize',onResize);
+
+/* ====================================================================
+   FRAME
+   ==================================================================== */
+const sph = new THREE.Spherical();
+function update(t, dt, tourT){
+  camera.updateMatrixWorld();
+  U.uTime.value = t % LOOP;
+  const T = U.uTime.value;
+
+  /* beads travelling along fibres */
+  if (mover){ const { list, P, g } = mover;
+    list.forEach((b,i)=>{ const u=((b.off + b.dir*b.n*T/LOOP)%1+1)%1, pts=b.s.pts, f=u*(pts.length-1), k=Math.floor(f), w=f-k, p=pts[k], q=pts[Math.min(k+1,pts.length-1)];
+      P[i*3]=p.x+(q.x-p.x)*w; P[i*3+1]=p.y+(q.y-p.y)*w; P[i*3+2]=p.z+(q.z-p.z)*w; });
+    g.attributes.position.array.set(P); g.attributes.position.needsUpdate=true; }
+
+  if (dust) dust.rotation.y = Math.sin(TAU*T/LOOP)*.02;
+
+  /* hover / tour state */
+  let hov = -1;
+  if (CAPTURE){
+    const N = Math.min(CFG.tourMax, tagEls.length) || 1;
+    neurons.forEach(n=>{ const slot = n.repo ? repos.indexOf(n.repo) : -1; if(slot<0 || slot>=N){ n.boost=0; n.target=0; return; } let x=((tourT/LOOP*N - slot)%N+N)%N;
+      n.boost = x<1 ? smooth(0,.12,x)*(1-smooth(.62,.92,x)) : 0; n.target=n.boost; if(n.boost>.5) hov=n.idx; });
+  } else {
+    const c = (!ptr.down && ptr.inside && ptr.onCv && ptr.type==='mouse' && !cardHover) ? pick(ptr.x,ptr.y) : -1;
+    canvas.classList.toggle('hit', c>=0 && !ptr.down);
+    const now = performance.now();
+    if (ptr.type==='mouse' && !pinned){            // hover = quick preview; a click pins the card
+      if (c>=0){ closeAt=0; if (c!==active) activate(c); }
+      else if (active>=0 && !cardHover){ if(!closeAt) closeAt=now+600; else if(now>closeAt){ closeAt=0; deactivate(); } }
+    }
+    neurons.forEach(n=>{ n.target = n.idx===active ? 1 : 0; n.boost += (n.target-n.boost)*(1-Math.exp(-dt*6)); });
+    hov = active;
+    if (!REDUCED){ const tgt = active>=0 ? CFG.rotateOpen : CFG.rotateIdle; controls.autoRotateSpeed += (tgt-controls.autoRotateSpeed)*(1-Math.exp(-dt*2.5)); }   // slow galaxy-like drift while a card is open
+  }
+  neurons.forEach(n=>{ n.dendMat.uniforms.uBoost.value=n.boost; n.somaMat.uniforms.uBoost.value=n.boost; n.halo.scale.setScalar(n.haloBase*(1+.5*n.boost)); n.halo.material.opacity=.6+.4*n.boost; });
+  if (fiberMat){ const fu=fiberMat.uniforms; if(hov>=0) fu.uHover.value=hov; fu.uHoverMix.value += ((hov>=0?1:0)-fu.uHoverMix.value)*(CAPTURE?1:(1-Math.exp(-dt*5))); if(CAPTURE) fu.uHoverMix.value = hov>=0?Math.max(...neurons.map(n=>n.boost)):0; }
+
+  /* labels */
+  for (const n of neurons){ if(!n.tag) continue;
+    const p=projectN(n), el=n.tag;
+    const r = clamp(n.somaR*p.ppu*2.5, n.big ? 18 : 11, 40);
+    el.style.transform=`translate3d(${p.x.toFixed(1)}px,${p.y.toFixed(1)}px,0)`; el.style.setProperty('--r', r.toFixed(1)+'px');
+    const depth = clamp(1.15 - (p.d - dist0*.75)/(dist0*.8), .35, 1);
+    const hr = hdrRect, hit = p.x>hr.l-30 && p.x<hr.r+30 && p.y>hr.t-24 && p.y<hr.b+24;
+    const dimmed = (!CAPTURE && active>=0 && n.idx!==active) ? .8 : 1;
+    el.style.setProperty('--o', (hit?0:depth*dimmed*(n.big?1:.85)).toFixed(2)); el.classList.add('vis'); el.classList.toggle('on', (CAPTURE? n.boost>.5 : n.idx===active));
+  }
+}
+
+let t0 = performance.now(), prev = t0;
+function frame(now){
+  const dt = Math.min(.1,(now-prev)/1000); prev = now;
+  const t = REDUCED ? 3 : (now-t0)/1000;
+  controls.update();
+  update(t, dt, t);
+  composer.render();
+  requestAnimationFrame(frame);
+}
+
+/* deterministic rendering for the README animation (scripts/render-hero.mjs) */
+function captureFrame(t){
+  const az = .30*Math.sin(TAU*t/LOOP) - .12, pol = 1.36 + .02*Math.sin(TAU*t/LOOP*2 + 1);
+  sph.set(dist0*1.04, pol, az); camera.position.setFromSpherical(sph); camera.lookAt(0,0,0);
+  update(t, 1/14, t); composer.render();
+}
+
+/* ====================================================================
+   BOOT
+   ==================================================================== */
+(async function boot(){
+  repos = await loadRepos();
+  W = innerWidth; H = innerHeight;
+  const m = W/H < .85 ? 'portrait' : 'wide';
+  build(m);
+  camera.position.set(0, .22, 1);
+  onResize();
+  camera.lookAt(0,0,0);
+  document.fonts.ready.then(()=>measureHeader());
+  repos.forEach(r=>{ if(r.images&&r.images[0]) setTimeout(()=>loadImg(r.images[0]), 1200); });
+  if (CAPTURE){
+    await document.fonts.ready; measureHeader();
+    window.__loopSeconds = LOOP; window.__frame = captureFrame; window.__tags = tagEls.length;
+    captureFrame(0); window.__ready = true;
+  } else {
+    requestAnimationFrame(frame);
+  }
+})();
+</script>
+</body>
+</html>
