@@ -1,6 +1,6 @@
 {
   "login": "Hadifard",
-  "generatedAt": "2026-10-19T08:16:14.627Z",
+  "generatedAt": "2026-10-22T05:59:17.089Z",
   "repos": [
     {
       "name": "mnist-mlp-3d-inference-visualizer",
@@ -18,12 +18,38 @@
         "mnist-handwriting-recognition",
         "numpy"
       ],
+      "pinned": true,
       "images": [
         "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/banner.png",
         "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/video-poster.png",
         "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/app-overview-annotated.png",
         "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/draw-and-confidence.png",
         "https://raw.githubusercontent.com/Hadifard/mnist-mlp-3d-inference-visualizer/main/docs/images/architecture.png"
+      ]
+    },
+    {
+      "name": "prnu-image-fingerprint",
+      "description": "Every camera sensor has tiny, fixed manufacturing flaws: each pixel reacts to light a little differently. This pattern is called PRNU (Photo-Response Non-Uniformity). It is unique, stable and invisible, and it ends up in every photo the camera takes.",
+      "url": "https://github.com/Hadifard/prnu-image-fingerprint",
+      "homepage": "https://www.linkedin.com/in/hadi-sarhangi-fard-mech-eng/",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 0,
+      "topics": [
+        "deep-learning",
+        "image-fingerprint",
+        "image-fingerprinting",
+        "image-processing",
+        "machine-learning",
+        "machine-learning-algorithms"
+      ],
+      "pinned": true,
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/prnu-image-fingerprint/main/docs/media/teaser.gif",
+        "https://raw.githubusercontent.com/Hadifard/prnu-image-fingerprint/main/docs/figures/deep.png",
+        "https://raw.githubusercontent.com/Hadifard/prnu-image-fingerprint/main/docs/figures/examples.png",
+        "https://raw.githubusercontent.com/Hadifard/prnu-image-fingerprint/main/docs/figures/pixels.png",
+        "https://raw.githubusercontent.com/Hadifard/prnu-image-fingerprint/main/docs/figures/spike.png"
       ]
     },
     {
@@ -42,36 +68,13 @@
         "mechanistic-interpretability",
         "pytorch"
       ],
+      "pinned": true,
       "images": [
         "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/banner.png",
         "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/head_view_induction.png",
         "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/architecture.png",
         "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/training_curves.png",
         "https://raw.githubusercontent.com/Hadifard/attentionlens/main/docs/images/attention_grid.png"
-      ]
-    },
-    {
-      "name": "niryo-ned2-robot-tictactoe",
-      "description": "Robot vs. Robot Tic-Tac-Toe is an advanced open-source robotics project powered by Niryo Ned2 6-axis arms, robust computer vision, and an unbeatable Alpha-Beta Minimax decision-making engine.",
-      "url": "https://github.com/Hadifard/niryo-ned2-robot-tictactoe",
-      "homepage": "https://www.linkedin.com/in/hadi-sarhangi-fard-mech-eng/",
-      "language": "Python",
-      "languageColor": "#3572A5",
-      "stars": 1,
-      "topics": [
-        "artificial-intelligence",
-        "artificial-neural-networks",
-        "computer-vision",
-        "deep-learning",
-        "niryo",
-        "tictactoe"
-      ],
-      "images": [
-        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_two_circle_transform.png",
-        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_depth_model.png",
-        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_trajectory.png",
-        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_game_logic.png",
-        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_path_learning.png"
       ]
     },
     {
@@ -90,12 +93,38 @@
         "deeplabv3",
         "facial-landmark-detection"
       ],
+      "pinned": true,
       "images": [
         "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_a%2520new%2520zealander%2520vintage%2520lady%2520portrait.jpg",
         "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_a%2520young%2520woman%2520vintage%2520portrait.jpg",
         "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_horse.jpg",
         "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_my%2520image%2520in%2520Prague.jpg",
         "https://raw.githubusercontent.com/Hadifard/enhanced-zhang-colorization-with-object-aware-processing/main/examples/output/Combined_object%2520aware_William%2520Holden%2520actor%2520vintage%2520photo.jpg"
+      ]
+    },
+    {
+      "name": "niryo-ned2-robot-tictactoe",
+      "description": "Robot vs. Robot Tic-Tac-Toe is an advanced open-source robotics project powered by Niryo Ned2 6-axis arms, robust computer vision, and an unbeatable Alpha-Beta Minimax decision-making engine.",
+      "url": "https://github.com/Hadifard/niryo-ned2-robot-tictactoe",
+      "homepage": "https://www.linkedin.com/in/hadi-sarhangi-fard-mech-eng/",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "topics": [
+        "artificial-intelligence",
+        "artificial-neural-networks",
+        "computer-vision",
+        "deep-learning",
+        "niryo",
+        "tictactoe"
+      ],
+      "pinned": true,
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_two_circle_transform.png",
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_depth_model.png",
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_trajectory.png",
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_game_logic.png",
+        "https://raw.githubusercontent.com/Hadifard/niryo-ned2-robot-tictactoe/main/docs/images/fig_path_learning.png"
       ]
     },
     {
@@ -113,12 +142,61 @@
         "javascript",
         "python"
       ],
+      "pinned": true,
       "images": [
         "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-overview.png",
         "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-dropout-off.png",
         "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-noisy-data.png",
         "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-uniform-data.png",
         "https://opengraph.githubassets.com/d753b0c8306b1eae381705d8244589757cfdccd0f2aba82be50fc0b4f9d96389/Hadifard/dropout-deep-learning-visualization"
+      ]
+    },
+    {
+      "name": "stock-pilot-app",
+      "description": "",
+      "url": "https://github.com/Hadifard/stock-pilot-app",
+      "homepage": "",
+      "language": "",
+      "languageColor": "",
+      "stars": 0,
+      "topics": [],
+      "pinned": false,
+      "images": [
+        "https://opengraph.githubassets.com/a1be2783417319e51eb8d1c9b5b8c8a64d879e84d721fe52d8a5759a5dcb7f4f/Hadifard/stock-pilot-app"
+      ]
+    },
+    {
+      "name": "deep-layer-output-visualizer",
+      "description": "An interactive 3D tool for watching how a small layer of neurons turns two inputs into a curved decision surface — built with plain JavaScript and Three.js, no build step, no framework, no dependencies to install.",
+      "url": "https://github.com/Hadifard/deep-layer-output-visualizer",
+      "homepage": "",
+      "language": "HTML",
+      "languageColor": "#e34c26",
+      "stars": 1,
+      "topics": [],
+      "pinned": false,
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/deep-layer-output-visualizer/main/assets/screenshots/screenshot-overview.png",
+        "https://raw.githubusercontent.com/Hadifard/deep-layer-output-visualizer/main/assets/screenshots/screenshot-sum-linear.png",
+        "https://raw.githubusercontent.com/Hadifard/deep-layer-output-visualizer/main/assets/screenshots/screenshot-sum-nonlinear.png",
+        "https://raw.githubusercontent.com/Hadifard/deep-layer-output-visualizer/main/assets/screenshots/screenshot-init-tanh-healthy.png",
+        "https://raw.githubusercontent.com/Hadifard/deep-layer-output-visualizer/main/assets/screenshots/screenshot-init-tanh-saturated.png"
+      ]
+    },
+    {
+      "name": "ai-explained-visually",
+      "description": "From one multiplication to GPT models, in about 80 seconds",
+      "url": "https://github.com/Hadifard/ai-explained-visually",
+      "homepage": "",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "topics": [],
+      "pinned": false,
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/ai-explained-visually/main/assets/AI_explained_for_beginners.gif",
+        "https://raw.githubusercontent.com/Hadifard/ai-explained-visually/main/assets/overview.png",
+        "https://opengraph.githubassets.com/0608450ddad84a5e0a02a91d5c7e3a724d148e0e66fba08d9a552ee1bf70434b/Hadifard/ai-explained-visually"
       ]
     },
     {
@@ -130,11 +208,51 @@
       "languageColor": "#f1e05a",
       "stars": 1,
       "topics": [],
+      "pinned": false,
       "images": [
         "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/01-overview.png",
         "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/02-fast-training-mode.png",
         "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/03-gradient-inspector-cards.png",
         "https://opengraph.githubassets.com/4456b17edbafc899ef921ef74ccf6180cc737e6a28dcfe5b31bbda6b6809af3d/Hadifard/neural-net-training-explorer"
+      ]
+    },
+    {
+      "name": "image-colorization-project",
+      "description": "Automatic black and white photo and video colorization using deep learning (Zhang et al. algorithm). Batch processing support with side-by-side comparison view.",
+      "url": "https://github.com/Hadifard/image-colorization-project",
+      "homepage": "",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "stars": 1,
+      "topics": [
+        "computer-vision",
+        "computer-vision-opencv",
+        "deep-learning",
+        "image-colorization",
+        "image-processing-python",
+        "opencv"
+      ],
+      "pinned": false,
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/Einstein.png",
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/Tesla.png",
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/kid.jpg",
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/Car.png",
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/Image.jpg"
+      ]
+    },
+    {
+      "name": "spring_school",
+      "description": "",
+      "url": "https://github.com/Hadifard/spring_school",
+      "homepage": "",
+      "language": "Jupyter Notebook",
+      "languageColor": "#DA5B0B",
+      "stars": 0,
+      "topics": [],
+      "pinned": false,
+      "images": [
+        "https://opengraph.githubassets.com/edbe63acc48e5b9ef5c00cba3801d4dd247573be2e3a9fbf3527e68eb014f8ba/Hadifard/spring_school"
       ]
     }
   ]
