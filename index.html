@@ -160,8 +160,8 @@ const CFG = {
   login: 'Hadifard',                  // GitHub user whose pinned repos are shown
   dataUrl: 'data/pinned.json',        // written daily by .github/workflows/update-pinned.yml
   shift: 0.24,                        // fraction of the width kept free on the left (name, text, card); the network sits to the right of it
-  rotateIdle: 0.45,                   // slow auto-rotation while nothing is open
-  rotateOpen: 0.12,                   // even slower, galaxy-like drift while a repo card is open
+  rotateIdle: 1.5,                   // slow auto-rotation while nothing is open
+  rotateOpen: 0.8,                   // even slower, galaxy-like drift while a repo card is open
   maxRepos: 40,                       // every public repo gets a neuron (the sync script writes at most this many)
   // pinned repos (max 6) sit in the large front neurons; every other public repo gets a smaller neuron further back
   tourMax: 6,                         // README animation: how many repos the camera "tour" lights up in turn
