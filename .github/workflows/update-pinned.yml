@@ -1,0 +1,32 @@
+name: Sync pinned repositories
+
+on:
+  schedule:
+    - cron: '23 4 * * *'     # every day; new or changed public repos show up within a day
+  workflow_dispatch:          # or run it by hand from the Actions tab
+  push:
+    paths: ['scripts/update-pinned.mjs']
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Read the pinned repositories
+        run: node scripts/update-pinned.mjs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_LOGIN: Hadifard
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data/pinned.json; then echo "nothing to commit"; exit 0; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/pinned.json
+          git commit -m "chore: sync pinned repositories"
+          git push
