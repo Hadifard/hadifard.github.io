@@ -1,6 +1,6 @@
 {
   "login": "Hadifard",
-  "generatedAt": "2026-10-22T17:05:47.815Z",
+  "generatedAt": "2026-10-28T10:41:10.607Z",
   "repos": [
     {
       "name": "mnist-mlp-3d-inference-visualizer",
@@ -149,6 +149,20 @@
         "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-noisy-data.png",
         "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-uniform-data.png",
         "https://opengraph.githubassets.com/d753b0c8306b1eae381705d8244589757cfdccd0f2aba82be50fc0b4f9d96389/Hadifard/dropout-deep-learning-visualization"
+      ]
+    },
+    {
+      "name": "deep-learning-books",
+      "description": "",
+      "url": "https://github.com/Hadifard/deep-learning-books",
+      "homepage": "",
+      "language": "",
+      "languageColor": "",
+      "stars": 0,
+      "topics": [],
+      "pinned": false,
+      "images": [
+        "https://opengraph.githubassets.com/8c97c544dd342067e0b084f8cc807bec2ca27a21d999050be4620792cdb43780/Hadifard/deep-learning-books"
       ]
     },
     {
