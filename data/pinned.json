@@ -1,6 +1,6 @@
 {
   "login": "Hadifard",
-  "generatedAt": "2026-10-29T10:58:37.430Z",
+  "generatedAt": "2026-11-07T11:11:55.297Z",
   "repos": [
     {
       "name": "mnist-mlp-3d-inference-visualizer",
@@ -152,6 +152,31 @@
       ]
     },
     {
+      "name": "ood-generalization-lab",
+      "description": "Interactive lab for learning how neural networks generalize, extrapolate and fail: MLP explorer, uncertainty, latent space, and MLP vs Transformer under distribution shift.",
+      "url": "https://github.com/Hadifard/ood-generalization-lab",
+      "homepage": "https://www.linkedin.com/in/hadi-sarhangi-fard-mech-eng/",
+      "language": "HTML",
+      "languageColor": "#e34c26",
+      "stars": 0,
+      "topics": [
+        "artificial-intelligence",
+        "attention",
+        "deep-learning",
+        "deep-reinforcement-learning",
+        "deeplearning",
+        "machine-learning"
+      ],
+      "pinned": false,
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/ood-generalization-lab/main/assets/screenshots/01_overview.png",
+        "https://raw.githubusercontent.com/Hadifard/ood-generalization-lab/main/assets/screenshots/14_file_menu.png",
+        "https://raw.githubusercontent.com/Hadifard/ood-generalization-lab/main/assets/screenshots/10_split_page.png",
+        "https://raw.githubusercontent.com/Hadifard/ood-generalization-lab/main/assets/screenshots/02_input_data.png",
+        "https://raw.githubusercontent.com/Hadifard/ood-generalization-lab/main/assets/screenshots/03_network_structure.png"
+      ]
+    },
+    {
       "name": "deep-learning-books",
       "description": "",
       "url": "https://github.com/Hadifard/deep-learning-books",
@@ -237,7 +262,7 @@
       "homepage": "",
       "language": "Python",
       "languageColor": "#3572A5",
-      "stars": 1,
+      "stars": 2,
       "topics": [
         "computer-vision",
         "computer-vision-opencv",
