@@ -1,6 +1,6 @@
 {
   "login": "Hadifard",
-  "generatedAt": "2026-11-07T11:11:55.297Z",
+  "generatedAt": "2026-11-20T13:14:18.126Z",
   "repos": [
     {
       "name": "mnist-mlp-3d-inference-visualizer",
@@ -149,6 +149,24 @@
         "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-noisy-data.png",
         "https://raw.githubusercontent.com/Hadifard/dropout-deep-learning-visualization/main/assets/screenshots/screenshot-uniform-data.png",
         "https://opengraph.githubassets.com/d753b0c8306b1eae381705d8244589757cfdccd0f2aba82be50fc0b4f9d96389/Hadifard/dropout-deep-learning-visualization"
+      ]
+    },
+    {
+      "name": "deeptome-translator",
+      "description": "",
+      "url": "https://github.com/Hadifard/deeptome-translator",
+      "homepage": "",
+      "language": "",
+      "languageColor": "",
+      "stars": 0,
+      "topics": [],
+      "pinned": false,
+      "images": [
+        "https://raw.githubusercontent.com/Hadifard/deeptome-translator/main/docs/images/banner.png",
+        "https://raw.githubusercontent.com/Hadifard/deeptome-translator/main/docs/images/before_after_persian.png",
+        "https://raw.githubusercontent.com/Hadifard/deeptome-translator/main/docs/images/main_window.png",
+        "https://raw.githubusercontent.com/Hadifard/deeptome-translator/main/docs/images/quick_translate.png",
+        "https://raw.githubusercontent.com/Hadifard/deeptome-translator/main/docs/images/review_editor.png"
       ]
     },
     {
