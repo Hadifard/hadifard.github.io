@@ -1,6 +1,6 @@
 {
   "login": "Hadifard",
-  "generatedAt": "2026-11-21T22:28:19.155Z",
+  "generatedAt": "2026-11-25T14:39:32.929Z",
   "repos": [
     {
       "name": "mnist-mlp-3d-inference-visualizer",
@@ -267,9 +267,9 @@
       "topics": [],
       "pinned": false,
       "images": [
+        "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/03-gradient-inspector-cards.png",
         "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/01-overview.png",
         "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/02-fast-training-mode.png",
-        "https://raw.githubusercontent.com/Hadifard/neural-net-training-explorer/main/screenshots/03-gradient-inspector-cards.png",
         "https://opengraph.githubassets.com/4456b17edbafc899ef921ef74ccf6180cc737e6a28dcfe5b31bbda6b6809af3d/Hadifard/neural-net-training-explorer"
       ]
     },
@@ -291,11 +291,11 @@
       ],
       "pinned": false,
       "images": [
-        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/Einstein.png",
-        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/Tesla.png",
-        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/kid.jpg",
-        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/Car.png",
-        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/Image.jpg"
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/examples/Image.jpg",
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/input_images/kid.jpg",
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/input_images/Tesla.jpg",
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/input_images/Einstein.jpg",
+        "https://raw.githubusercontent.com/Hadifard/image-colorization-project/main/input_images/flower.jpg"
       ]
     },
     {
